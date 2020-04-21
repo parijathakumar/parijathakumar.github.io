@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <title>NOTES (that only make sense to me)</title>
+        <link rel="stylesheet" href="http://parijathakumar.github.io/theme/css/main.css" />
+        <link href="http://parijathakumar.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="NOTES (that only make sense to me) Atom Feed" />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="http://parijathakumar.github.io/">NOTES (that only make sense to me) </a></h1>
+                <nav><ul>
+                    <li><a href="http://parijathakumar.github.io/category/go.html">Go</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+
+            <aside id="featured" class="body">
+                <article>
+                    <h1 class="entry-title"><a href="http://parijathakumar.github.io/go-lang-basics.html">Go Language -- Basics</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2020-04-21T15:30:00+05:30">
+                Published: Tue 21 April 2020
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="http://parijathakumar.github.io/author/parijatha-kumar.html">Parijatha Kumar</a>
+        </address>
+<p>In <a href="http://parijathakumar.github.io/category/go.html">Go</a>.</p>
+<p>tags: <a href="http://parijathakumar.github.io/tag/go.html">go</a> <a href="http://parijathakumar.github.io/tag/coding.html">coding</a> </p>
+</footer><!-- /.post-info --><p>They say Go is a statically typed language with a strong type-safe memory model, an inbuilt garbage collector with strong support for channel-based concurrency.</p>
+<h3>Why I am interested ?</h3>
+<ul>
+<li>It's touted to be a modern C alternative with inbuilt garbage collection and better memory safety (don't know what exactly it is !!). Go programs run almost as fast as C programs. I've read that Rust comes to as low-level as C.</li>
+<li>It statically links all dependencies and builds a single binary. Though this increases the binary file's size, it's better for portability (no dependency hell, works on containers too). Can it also do 'dynamic linking' if required ? Should see. Seems a Go program can be compiled for a different target OS than the one on which it's being compiled. Currently it supports Windows, Linux, macOS, and Android.</li>
+<li>Best known for it's first hand support for concurrency (with the help of go routines, channels).</li>
+<li>The designers have deliberately avoided pointer arithmetic (how confusing it was for me in C !!) and multiple inheritance (my Python's experience has shown that multiple inheritance is confusing and can often lead to hard-to debug problems).</li>
+<li>Another interesting thing about a go program is that it does not compile if we import a package/library (or a function etc) while not using the imported package/library (or whatever) in our program. This feature keeps the binary file contained to the required size and also helps to avoid circular dependencies.</li>
+<li>But it does not support method overloading. Sad. May be there are other ways of achieving the same or there are better alternatives.</li>
+<li>Seems, there is an increasing trend to use it for system programming. See kubernetes and docker.</li>
+</ul>
+<h3>Program Structure and Environment</h3>
+<p>Source files have ".go" extension.</p>
+<p>Every file starts with a package namespace declaration. All ".go" files in the same directory must have the same package declaration and thus belong to the same package.</p>
+<p>Program execution starts at the <code>main()</code> function in the <code>main</code> package. So, for the program to be executable ...</p>
+<ul>
+<li>there must be a <code>main</code> package. This is somewhat similar to Java where there must be a <code>Main.java</code> file.</li>
+<li>there must be one and only one file in that <code>main</code> package with a <code>main()</code> function. This is somewhat similar to Java where there must be a <code>Main</code> class (in <code>Main.java</code> file) having a function with a specific signature (<code>public static void main(String[] args)</code>).</li>
+</ul>
+<p>There is no such requirement for Python though we often use the <code>if __name__ == "__main__":</code> pattern.</p>
+<p>If the program is not required to be executed on it's own, then there need not be a <code>main</code> package.</p>
+<div class="highlight"><pre><span></span><span class="c1">// &#39;package&#39; statement namespaces this file.</span>
+<span class="c1">// main package is compulsory for executable programs.</span>
+<span class="kn">package</span> <span class="nx">main</span>
+<span class="kn">import</span> <span class="s">&quot;fmt&quot;</span>
+<span class="c1">// main() function is the entry point of the program (not just this single file).</span>
+<span class="c1">// &#39;main&#39; package MUST have a function named main().</span>
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;hello world&quot;</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>Compile with <code>go build file_name.go</code>. Or else build and run with <code>go run file_name.go</code>.</p>
+<p>Go needs semi-colons as the statement terminators as per grammar rules. But the lexer will auto-insert one if there is no ambiguity. Because of this, Go recommends that we avoid putting semi-colon on each line unless it is absolutely necessary. In fact, Go's own auto-formatting tool <code>gofmt</code> will remove unnecessary semi-colons. This <a href="https://groups.google.com/forum/#!topic/golang-nuts/XuMrWI0Q8uk">post</a> is interesting to read.</p>
+<p>Because of this auto-inserting-semi-colon feature, there is a tricky side-effect to understand. The <code>{</code> on the same line at the end of the function definition above (<code>func main() {</code>) is not a style, it is a must. If it is omitted (for example, if we want to style it by entering the opening curly brace on the next line), Go will insert a semi-colon after <code>main()</code> and thus the next line's <code>{</code> doesn't have any meaning by itself and thus the program doesn't compile.</p>
+<p>A function or variable can be imported from other packages only if it's name starts with a capital letter. Strange. Also, unlike Python, Go programs don't compile if we import a function and don't use it. But there is a workaround for it by placing an underscore in front of the imported function name.</p>
+<h3>Basics</h3>
+<p>Strings in Go support multi-byte UFT-8 encoding, making them safe for any language.</p>
+<p>Comments are more like Java. <code>//</code> and <code>/* ...... */</code>.</p>
+<p>Go uses <code>os.Stdin</code> for accessing standard input, <code>os.Stdout</code> for accessing standard output, and <code>os.Stderr</code> for accessing standard error.</p>
+<p><code>fmt.Println()</code>, <code>fmt.Print()</code>, and <code>fmt.Printf()</code> are the simplest and widely used printing functions. <code>fmt.Print()</code> adds a space between parameters and also a new line at the end.</p>
+<p>Besides, there is also the <code>S</code> family of functions that includes <code>fmt.Sprintln()</code>, <code>fmt.Sprint()</code>, and <code>fmt.Sprintf()</code>, which are used for creating strings based on the given format and the <code>F</code> family of functions that includes <code>fmt.Fprintln()</code>, <code>fmt.Fprint()</code> and <code>fmt.Fprintf()</code>, which are used for writing to files using an <code>io.Writer</code>.</p>                </article>
+            </aside><!-- /#featured -->
+        <section id="extras" class="body">
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="http://parijathakumar.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+</body>
+</html>

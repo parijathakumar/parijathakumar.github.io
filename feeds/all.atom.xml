@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>NOTES (that only make sense to me)</title><link href="http://parijathakumar.github.io/" rel="alternate"></link><link href="http://parijathakumar.github.io/feeds/all.atom.xml" rel="self"></link><id>http://parijathakumar.github.io/</id><updated>2020-04-21T15:30:00+05:30</updated><entry><title>Go Language -- Basics</title><link href="http://parijathakumar.github.io/go-lang-basics.html" rel="alternate"></link><published>2020-04-21T15:30:00+05:30</published><updated>2020-04-21T15:30:00+05:30</updated><author><name>Parijatha Kumar</name></author><id>tag:parijathakumar.github.io,2020-04-21:/go-lang-basics.html</id><summary type="html">&lt;p&gt;Basic structure, types and variable declaration&lt;/p&gt;</summary><content type="html">&lt;p&gt;They say Go is a statically typed language with a strong type-safe memory model, an inbuilt garbage collector with strong support for channel-based concurrency.&lt;/p&gt;
+&lt;h3&gt;Why I am interested ?&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;It's touted to be a modern C alternative with inbuilt garbage collection and better memory safety (don't know what exactly it is !!). Go programs run almost as fast as C programs. I've read that Rust comes to as low-level as C.&lt;/li&gt;
+&lt;li&gt;It statically links all dependencies and builds a single binary. Though this increases the binary file's size, it's better for portability (no dependency hell, works on containers too). Can it also do 'dynamic linking' if required ? Should see. Seems a Go program can be compiled for a different target OS than the one on which it's being compiled. Currently it supports Windows, Linux, macOS, and Android.&lt;/li&gt;
+&lt;li&gt;Best known for it's first hand support for concurrency (with the help of go routines, channels).&lt;/li&gt;
+&lt;li&gt;The designers have deliberately avoided pointer arithmetic (how confusing it was for me in C !!) and multiple inheritance (my Python's experience has shown that multiple inheritance is confusing and can often lead to hard-to debug problems).&lt;/li&gt;
+&lt;li&gt;Another interesting thing about a go program is that it does not compile if we import a package/library (or a function etc) while not using the imported package/library (or whatever) in our program. This feature keeps the binary file contained to the required size and also helps to avoid circular dependencies.&lt;/li&gt;
+&lt;li&gt;But it does not support method overloading. Sad. May be there are other ways of achieving the same or there are better alternatives.&lt;/li&gt;
+&lt;li&gt;Seems, there is an increasing trend to use it for system programming. See kubernetes and docker.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Program Structure and Environment&lt;/h3&gt;
+&lt;p&gt;Source files have ".go" extension.&lt;/p&gt;
+&lt;p&gt;Every file starts with a package namespace declaration. All ".go" files in the same directory must have the same package declaration and thus belong to the same package.&lt;/p&gt;
+&lt;p&gt;Program execution starts at the &lt;code&gt;main()&lt;/code&gt; function in the &lt;code&gt;main&lt;/code&gt; package. So, for the program to be executable ...&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;there must be a &lt;code&gt;main&lt;/code&gt; package. This is somewhat similar to Java where there must be a &lt;code&gt;Main.java&lt;/code&gt; file.&lt;/li&gt;
+&lt;li&gt;there must be one and only one file in that &lt;code&gt;main&lt;/code&gt; package with a &lt;code&gt;main()&lt;/code&gt; function. This is somewhat similar to Java where there must be a &lt;code&gt;Main&lt;/code&gt; class (in &lt;code&gt;Main.java&lt;/code&gt; file) having a function with a specific signature (&lt;code&gt;public static void main(String[] args)&lt;/code&gt;).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;There is no such requirement for Python though we often use the &lt;code&gt;if __name__ == "__main__":&lt;/code&gt; pattern.&lt;/p&gt;
+&lt;p&gt;If the program is not required to be executed on it's own, then there need not be a &lt;code&gt;main&lt;/code&gt; package.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;// &amp;#39;package&amp;#39; statement namespaces this file.&lt;/span&gt;
+&lt;span class="c1"&gt;// main package is compulsory for executable programs.&lt;/span&gt;
+&lt;span class="kn"&gt;package&lt;/span&gt; &lt;span class="nx"&gt;main&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;fmt&amp;quot;&lt;/span&gt;
+&lt;span class="c1"&gt;// main() function is the entry point of the program (not just this single file).&lt;/span&gt;
+&lt;span class="c1"&gt;// &amp;#39;main&amp;#39; package MUST have a function named main().&lt;/span&gt;
+&lt;span class="kd"&gt;func&lt;/span&gt; &lt;span class="nx"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="nx"&gt;fmt&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;Println&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;hello world&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Compile with &lt;code&gt;go build file_name.go&lt;/code&gt;. Or else build and run with &lt;code&gt;go run file_name.go&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Go needs semi-colons as the statement terminators as per grammar rules. But the lexer will auto-insert one if there is no ambiguity. Because of this, Go recommends that we avoid putting semi-colon on each line unless it is absolutely necessary. In fact, Go's own auto-formatting tool &lt;code&gt;gofmt&lt;/code&gt; will remove unnecessary semi-colons. This &lt;a href="https://groups.google.com/forum/#!topic/golang-nuts/XuMrWI0Q8uk"&gt;post&lt;/a&gt; is interesting to read.&lt;/p&gt;
+&lt;p&gt;Because of this auto-inserting-semi-colon feature, there is a tricky side-effect to understand. The &lt;code&gt;{&lt;/code&gt; on the same line at the end of the function definition above (&lt;code&gt;func main() {&lt;/code&gt;) is not a style, it is a must. If it is omitted (for example, if we want to style it by entering the opening curly brace on the next line), Go will insert a semi-colon after &lt;code&gt;main()&lt;/code&gt; and thus the next line's &lt;code&gt;{&lt;/code&gt; doesn't have any meaning by itself and thus the program doesn't compile.&lt;/p&gt;
+&lt;p&gt;A function or variable can be imported from other packages only if it's name starts with a capital letter. Strange. Also, unlike Python, Go programs don't compile if we import a function and don't use it. But there is a workaround for it by placing an underscore in front of the imported function name.&lt;/p&gt;
+&lt;h3&gt;Basics&lt;/h3&gt;
+&lt;p&gt;Strings in Go support multi-byte UFT-8 encoding, making them safe for any language.&lt;/p&gt;
+&lt;p&gt;Comments are more like Java. &lt;code&gt;//&lt;/code&gt; and &lt;code&gt;/* ...... */&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Go uses &lt;code&gt;os.Stdin&lt;/code&gt; for accessing standard input, &lt;code&gt;os.Stdout&lt;/code&gt; for accessing standard output, and &lt;code&gt;os.Stderr&lt;/code&gt; for accessing standard error.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;fmt.Println()&lt;/code&gt;, &lt;code&gt;fmt.Print()&lt;/code&gt;, and &lt;code&gt;fmt.Printf()&lt;/code&gt; are the simplest and widely used printing functions. &lt;code&gt;fmt.Print()&lt;/code&gt; adds a space between parameters and also a new line at the end.&lt;/p&gt;
+&lt;p&gt;Besides, there is also the &lt;code&gt;S&lt;/code&gt; family of functions that includes &lt;code&gt;fmt.Sprintln()&lt;/code&gt;, &lt;code&gt;fmt.Sprint()&lt;/code&gt;, and &lt;code&gt;fmt.Sprintf()&lt;/code&gt;, which are used for creating strings based on the given format and the &lt;code&gt;F&lt;/code&gt; family of functions that includes &lt;code&gt;fmt.Fprintln()&lt;/code&gt;, &lt;code&gt;fmt.Fprint()&lt;/code&gt; and &lt;code&gt;fmt.Fprintf()&lt;/code&gt;, which are used for writing to files using an &lt;code&gt;io.Writer&lt;/code&gt;.&lt;/p&gt;</content><category term="Go"></category><category term="go"></category><category term="coding"></category></entry></feed>
