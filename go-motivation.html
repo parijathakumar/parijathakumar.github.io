@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <title>Go -- Motivation</title>
+        <link rel="stylesheet" href="https://parijathakumar.github.io/theme/css/main.css" />
+        <link href="https://parijathakumar.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="NOTES (that only make sense to me) Atom Feed" />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="https://parijathakumar.github.io/">NOTES (that only make sense to me) </a></h1>
+                <nav><ul>
+                    <li class="active"><a href="https://parijathakumar.github.io/category/go.html">Go</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="https://parijathakumar.github.io/go-motivation.html" rel="bookmark"
+           title="Permalink to Go -- Motivation">Go -- Motivation</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2020-04-21T15:30:00+05:30">
+                Published: Tue 21 April 2020
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="https://parijathakumar.github.io/author/parijatha-kumar.html">Parijatha Kumar</a>
+        </address>
+<p>In <a href="https://parijathakumar.github.io/category/go.html">Go</a>.</p>
+<p>tags: <a href="https://parijathakumar.github.io/tag/go.html">go</a> <a href="https://parijathakumar.github.io/tag/coding.html">coding</a> </p>
+</footer><!-- /.post-info -->      <p>They say Go is a statically typed language with a strong type-safe memory model, an inbuilt garbage collector with strong support for channel-based concurrency.</p>
+<h2>Why I am interested ?</h2>
+<ul>
+<li>It's touted to be a modern C alternative with inbuilt garbage collection and better memory safety (don't know what exactly it is !!). Go programs run almost as fast as C programs. I've read that Rust comes to as low-level as C.</li>
+<li>It statically links all dependencies and builds a single binary. Though this increases the binary file's size, it's better for portability (no dependency hell, works on containers too). Can it also do 'dynamic linking' if required ? Should see. Seems a Go program can be compiled for a different target OS than the one on which it's being compiled. Currently it supports Windows, Linux, macOS, and Android.</li>
+<li>Best known for it's first hand support for concurrency (with the help of go routines, channels).</li>
+<li>The designers have deliberately avoided pointer arithmetic (how confusing it was for me in C !!) and multiple inheritance (my Python's experience has shown that multiple inheritance is confusing and can often lead to hard-to debug problems).</li>
+<li>Another interesting thing about a Go program is that it does not compile if we import a package/library (or a function etc) while not using the imported package/library (or whatever) in our program. This feature keeps the binary file contained to the required size and also helps to avoid circular dependencies.</li>
+<li>Go does not support method overloading. Sad. May be there are other ways of achieving the same or there are better alternatives.</li>
+<li>Seems, there is an increasing trend to use it for system programming. See kubernetes and docker.</li>
+</ul>
+<p>I've developed some prejudice ... it's fast and more modern compared to C.</p>
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="https://parijathakumar.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+</body>
+</html>

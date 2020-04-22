@@ -1,22 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>NOTES (that only make sense to me)</title><link href="https://parijathakumar.github.io/" rel="alternate"></link><link href="https://parijathakumar.github.io/feeds/all.atom.xml" rel="self"></link><id>https://parijathakumar.github.io/</id><updated>2020-04-21T15:30:00+05:30</updated><entry><title>Go Language -- Basics</title><link href="https://parijathakumar.github.io/go-lang-basics.html" rel="alternate"></link><published>2020-04-21T15:30:00+05:30</published><updated>2020-04-21T15:30:00+05:30</updated><author><name>Parijatha Kumar</name></author><id>tag:parijathakumar.github.io,2020-04-21:/go-lang-basics.html</id><summary type="html">&lt;p&gt;Basic structure, types and variable declaration&lt;/p&gt;</summary><content type="html">&lt;p&gt;They say Go is a statically typed language with a strong type-safe memory model, an inbuilt garbage collector with strong support for channel-based concurrency.&lt;/p&gt;
-&lt;h3&gt;Why I am interested ?&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;It's touted to be a modern C alternative with inbuilt garbage collection and better memory safety (don't know what exactly it is !!). Go programs run almost as fast as C programs. I've read that Rust comes to as low-level as C.&lt;/li&gt;
-&lt;li&gt;It statically links all dependencies and builds a single binary. Though this increases the binary file's size, it's better for portability (no dependency hell, works on containers too). Can it also do 'dynamic linking' if required ? Should see. Seems a Go program can be compiled for a different target OS than the one on which it's being compiled. Currently it supports Windows, Linux, macOS, and Android.&lt;/li&gt;
-&lt;li&gt;Best known for it's first hand support for concurrency (with the help of go routines, channels).&lt;/li&gt;
-&lt;li&gt;The designers have deliberately avoided pointer arithmetic (how confusing it was for me in C !!) and multiple inheritance (my Python's experience has shown that multiple inheritance is confusing and can often lead to hard-to debug problems).&lt;/li&gt;
-&lt;li&gt;Another interesting thing about a go program is that it does not compile if we import a package/library (or a function etc) while not using the imported package/library (or whatever) in our program. This feature keeps the binary file contained to the required size and also helps to avoid circular dependencies.&lt;/li&gt;
-&lt;li&gt;But it does not support method overloading. Sad. May be there are other ways of achieving the same or there are better alternatives.&lt;/li&gt;
-&lt;li&gt;Seems, there is an increasing trend to use it for system programming. See kubernetes and docker.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3&gt;Program Structure and Environment&lt;/h3&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>NOTES (that only make sense to me)</title><link href="https://parijathakumar.github.io/" rel="alternate"></link><link href="https://parijathakumar.github.io/feeds/all.atom.xml" rel="self"></link><id>https://parijathakumar.github.io/</id><updated>2020-04-22T17:30:00+05:30</updated><entry><title>Go -- Basics</title><link href="https://parijathakumar.github.io/go-basics.html" rel="alternate"></link><published>2020-04-22T17:30:00+05:30</published><updated>2020-04-22T17:30:00+05:30</updated><author><name>Parijatha Kumar</name></author><id>tag:parijathakumar.github.io,2020-04-22:/go-basics.html</id><summary type="html">&lt;p&gt;Basic structure, types and variable declaration&lt;/p&gt;</summary><content type="html">&lt;h2&gt;Program Structure and Environment&lt;/h2&gt;
 &lt;p&gt;Source files have ".go" extension.&lt;/p&gt;
 &lt;p&gt;Every file starts with a package namespace declaration. All ".go" files in the same directory must have the same package declaration and thus belong to the same package.&lt;/p&gt;
 &lt;p&gt;Program execution starts at the &lt;code&gt;main()&lt;/code&gt; function in the &lt;code&gt;main&lt;/code&gt; package. So, for the program to be executable ...&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;there must be a &lt;code&gt;main&lt;/code&gt; package. This is somewhat similar to Java where there must be a &lt;code&gt;Main.java&lt;/code&gt; file.&lt;/li&gt;
-&lt;li&gt;there must be one and only one file in that &lt;code&gt;main&lt;/code&gt; package with a &lt;code&gt;main()&lt;/code&gt; function. This is somewhat similar to Java where there must be a &lt;code&gt;Main&lt;/code&gt; class (in &lt;code&gt;Main.java&lt;/code&gt; file) having a function with a specific signature (&lt;code&gt;public static void main(String[] args)&lt;/code&gt;).&lt;/li&gt;
+&lt;li&gt;there must be a &lt;code&gt;main&lt;/code&gt; package. This is somewhat similar to Java where there must be a &lt;code&gt;Main.java&lt;/code&gt; file. In Java, the file itself must be named as &lt;code&gt;Main.java&lt;/code&gt;, whereas in Go, only the package namespace must be called &lt;code&gt;main&lt;/code&gt;, the directory name can be anything.&lt;/li&gt;
+&lt;li&gt;there must be one and only one file in that &lt;code&gt;main&lt;/code&gt; package with a &lt;code&gt;main()&lt;/code&gt; function. This is also similar to Java where there must be a &lt;code&gt;Main&lt;/code&gt; class (in &lt;code&gt;Main.java&lt;/code&gt; file) having a function with a specific signature (&lt;code&gt;public static void main(String[] args)&lt;/code&gt;).&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;There is no such requirement for Python though we often use the &lt;code&gt;if __name__ == "__main__":&lt;/code&gt; pattern.&lt;/p&gt;
 &lt;p&gt;If the program is not required to be executed on it's own, then there need not be a &lt;code&gt;main&lt;/code&gt; package.&lt;/p&gt;
@@ -36,9 +25,140 @@
 &lt;p&gt;Go needs semi-colons as the statement terminators as per grammar rules. But the lexer will auto-insert one if there is no ambiguity. Because of this, Go recommends that we avoid putting semi-colon on each line unless it is absolutely necessary. In fact, Go's own auto-formatting tool &lt;code&gt;gofmt&lt;/code&gt; will remove unnecessary semi-colons. This &lt;a href="https://groups.google.com/forum/#!topic/golang-nuts/XuMrWI0Q8uk"&gt;post&lt;/a&gt; is interesting to read.&lt;/p&gt;
 &lt;p&gt;Because of this auto-inserting-semi-colon feature, there is a tricky side-effect to understand. The &lt;code&gt;{&lt;/code&gt; on the same line at the end of the function definition above (&lt;code&gt;func main() {&lt;/code&gt;) is not a style, it is a must. If it is omitted (for example, if we want to style it by entering the opening curly brace on the next line), Go will insert a semi-colon after &lt;code&gt;main()&lt;/code&gt; and thus the next line's &lt;code&gt;{&lt;/code&gt; doesn't have any meaning by itself and thus the program doesn't compile.&lt;/p&gt;
 &lt;p&gt;A function or variable can be imported from other packages only if it's name starts with a capital letter. Strange. Also, unlike Python, Go programs don't compile if we import a function and don't use it. But there is a workaround for it by placing an underscore in front of the imported function name.&lt;/p&gt;
-&lt;h3&gt;Basics&lt;/h3&gt;
-&lt;p&gt;Strings in Go support multi-byte UFT-8 encoding, making them safe for any language.&lt;/p&gt;
 &lt;p&gt;Comments are more like Java. &lt;code&gt;//&lt;/code&gt; and &lt;code&gt;/* ...... */&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;Go uses &lt;code&gt;os.Stdin&lt;/code&gt; for accessing standard input, &lt;code&gt;os.Stdout&lt;/code&gt; for accessing standard output, and &lt;code&gt;os.Stderr&lt;/code&gt; for accessing standard error.&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;fmt.Println()&lt;/code&gt;, &lt;code&gt;fmt.Print()&lt;/code&gt;, and &lt;code&gt;fmt.Printf()&lt;/code&gt; are the simplest and widely used printing functions. &lt;code&gt;fmt.Print()&lt;/code&gt; adds a space between parameters and also a new line at the end.&lt;/p&gt;
-&lt;p&gt;Besides, there is also the &lt;code&gt;S&lt;/code&gt; family of functions that includes &lt;code&gt;fmt.Sprintln()&lt;/code&gt;, &lt;code&gt;fmt.Sprint()&lt;/code&gt;, and &lt;code&gt;fmt.Sprintf()&lt;/code&gt;, which are used for creating strings based on the given format and the &lt;code&gt;F&lt;/code&gt; family of functions that includes &lt;code&gt;fmt.Fprintln()&lt;/code&gt;, &lt;code&gt;fmt.Fprint()&lt;/code&gt; and &lt;code&gt;fmt.Fprintf()&lt;/code&gt;, which are used for writing to files using an &lt;code&gt;io.Writer&lt;/code&gt;.&lt;/p&gt;</content><category term="Go"></category><category term="go"></category><category term="coding"></category></entry></feed>
+&lt;h2&gt;Basics&lt;/h2&gt;
+&lt;h3&gt;Variables and Constants&lt;/h3&gt;
+&lt;p&gt;Variables can be declared in a few different ways ...&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;package&lt;/span&gt; &lt;span class="nx"&gt;main&lt;/span&gt;
+&lt;span class="c1"&gt;// package scope&lt;/span&gt;
+
+&lt;span class="c1"&gt;// When declaring in package scope, the keyword var is compulsory because&lt;/span&gt;
+&lt;span class="c1"&gt;// any statement in package scope must start with a Go keyword.&lt;/span&gt;
+&lt;span class="c1"&gt;// So months := 35 is invalid here.&lt;/span&gt;
+&lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;months&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;35&lt;/span&gt;
+
+&lt;span class="kd"&gt;func&lt;/span&gt; &lt;span class="nx"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="c1"&gt;// function scope of function &amp;#39;main&amp;#39;&lt;/span&gt;
+
+    &lt;span class="c1"&gt;// the := shortcut works only in the function scope.&lt;/span&gt;
+    &lt;span class="nx"&gt;distanceInKm&lt;/span&gt; &lt;span class="o"&gt;:=&lt;/span&gt; &lt;span class="mf"&gt;43.5&lt;/span&gt;  &lt;span class="c1"&gt;// infers the type as float&lt;/span&gt;
+
+    &lt;span class="c1"&gt;// multiple variables can also be initialised at once with := shortcut&lt;/span&gt;
+    &lt;span class="nx"&gt;name&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;knowEnglish&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;age&lt;/span&gt; &lt;span class="o"&gt;:=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Lakshmi&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;38&lt;/span&gt;
+
+    &lt;span class="c1"&gt;// we can use var in function scope too&lt;/span&gt;
+    &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;years&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;35&lt;/span&gt;
+
+    &lt;span class="c1"&gt;// multiple variables can be declared in one line with var&lt;/span&gt;
+    &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;apples&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;oranges&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt;  &lt;span class="c1"&gt;// d and e get zero value of int type i.e., 0&lt;/span&gt;
+    &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;firstName&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;secondName&lt;/span&gt; &lt;span class="kt"&gt;string&lt;/span&gt; &lt;span class="c1"&gt;// f and g get zero value of string type i.e., &amp;quot;&amp;quot;&lt;/span&gt;
+
+    &lt;span class="c1"&gt;// multiple variables can be declared and optionally&lt;/span&gt;
+    &lt;span class="c1"&gt;// initialised at once like so ...&lt;/span&gt;
+    &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;
+        &lt;span class="nx"&gt;person&lt;/span&gt; &lt;span class="kt"&gt;string&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Nani&amp;quot;&lt;/span&gt;
+        &lt;span class="nx"&gt;isMarried&lt;/span&gt; &lt;span class="kt"&gt;bool&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt;
+        &lt;span class="nx"&gt;isEmployed&lt;/span&gt; &lt;span class="kt"&gt;bool&lt;/span&gt;
+    &lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;As Go is UTF-8 compliant, variable names need not be in English only. They can be in any language. Only rule is it must start with either a letter or &lt;code&gt;_&lt;/code&gt; and then it can contain letters, digits and &lt;code&gt;_&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;The zero values are :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;0 for a number type like &lt;code&gt;int&lt;/code&gt; and &lt;code&gt;float&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;"" for &lt;code&gt;string&lt;/code&gt; type&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;false&lt;/code&gt; for &lt;code&gt;bool&lt;/code&gt; type&lt;/li&gt;
+&lt;li&gt;The special &lt;code&gt;nil&lt;/code&gt; for other types (pointers, functions, interfaces, slices, channels and maps)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Constants can be declared just like variables, with a &lt;code&gt;const&lt;/code&gt; keyword instead.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kd"&gt;const&lt;/span&gt; &lt;span class="nx"&gt;a&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;32&lt;/span&gt;  &lt;span class="c1"&gt;// := operator not allowed for const declarations&lt;/span&gt;
+&lt;span class="kd"&gt;const&lt;/span&gt; &lt;span class="nx"&gt;b&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;64&lt;/span&gt;
+&lt;span class="kd"&gt;const&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;
+    &lt;span class="nx"&gt;c&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="mf"&gt;32.5&lt;/span&gt;
+    &lt;span class="nx"&gt;d&lt;/span&gt; &lt;span class="kt"&gt;string&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Venu&amp;quot;&lt;/span&gt;
+&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;When we want to create some sort of Enum functioality, we can use the &lt;code&gt;iota&lt;/code&gt; keyword and &lt;code&gt;const&lt;/code&gt; declarations to create one.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kd"&gt;const&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;
+  &lt;span class="nx"&gt;Sunday&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;iota&lt;/span&gt;
+  &lt;span class="nx"&gt;Monday&lt;/span&gt;
+  &lt;span class="nx"&gt;Tuesday&lt;/span&gt;
+  &lt;span class="nx"&gt;Wednesday&lt;/span&gt;
+  &lt;span class="nx"&gt;Thursday&lt;/span&gt;
+  &lt;span class="nx"&gt;Friday&lt;/span&gt;
+  &lt;span class="nx"&gt;Saturday&lt;/span&gt;
+&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="c1"&gt;// iota auto assigns the numbers.&lt;/span&gt;
+&lt;span class="c1"&gt;// iota also takes care when we later add another constant in between.&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;Core Types&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;booleans : &lt;code&gt;bool&lt;/code&gt;. Can be &lt;code&gt;true&lt;/code&gt; and &lt;code&gt;false&lt;/code&gt;. In Python, they are &lt;code&gt;True&lt;/code&gt; and &lt;code&gt;False&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;integers : &lt;code&gt;uint8&lt;/code&gt;, &lt;code&gt;uint16&lt;/code&gt;,&lt;code&gt;uint32&lt;/code&gt;, &lt;code&gt;uint64&lt;/code&gt; and &lt;code&gt;int8&lt;/code&gt;, &lt;code&gt;int16&lt;/code&gt;, &lt;code&gt;int32&lt;/code&gt; and &lt;code&gt;int64&lt;/code&gt;. &lt;code&gt;byte&lt;/code&gt; is alias for &lt;code&gt;uint8&lt;/code&gt;. &lt;code&gt;rune&lt;/code&gt; is alias for &lt;code&gt;int32&lt;/code&gt;. Also, there are &lt;code&gt;uint&lt;/code&gt; and &lt;code&gt;int&lt;/code&gt; which are platform dependent (32-bit or 64-bit). Important thing to note is that &lt;code&gt;int&lt;/code&gt; is a different type from either of the &lt;code&gt;int32&lt;/code&gt; or &lt;code&gt;int64&lt;/code&gt; types, even if the values are equal. If u need even bigger numbers than &lt;code&gt;uint32&lt;/code&gt; or &lt;code&gt;uint64&lt;/code&gt;, then u can use &lt;code&gt;math/big&lt;/code&gt;. Also, one more thing to note is if we try to assign values above the maximum allowed for that type, then Go raises an "overflows" error. But, if we increment the number beyond the max allowed one in the code, then Go will not raise any error, instead, it silently wraps around from the smallest number side of that type. This is dangerous if not taken care.&lt;/li&gt;
+&lt;li&gt;floats : &lt;code&gt;float32&lt;/code&gt; and &lt;code&gt;float64&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;text : &lt;/li&gt;
+&lt;li&gt;&lt;code&gt;string&lt;/code&gt; : Go strings are simple slices (arrays) of bytes. Nothing more than that. As Go needs to support more than one type of encoding (though the default preferred one is UTF-8), Go strings do not assume any encoding on their own. So, they are just sequence of raw bytes. This is similar to the setup in Python2. That's why &lt;code&gt;len()&lt;/code&gt; on a string variable gives only the number of raw bytes, not the number of characters.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;rune&lt;/code&gt; : It's character type that stores a single UTF-8 multi-byte character. To figure out the number of characters of a string variable, we need to make a slice of &lt;code&gt;rune&lt;/code&gt; type from it, and then apply &lt;code&gt;len()&lt;/code&gt; on that slice.&lt;/li&gt;
+&lt;li&gt;the special &lt;code&gt;nil&lt;/code&gt;: In fact, it's not a type. It's a special value which represents empty value of empty type.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Literals&lt;/h3&gt;
+&lt;p&gt;Literals are the way you provide values to a variable. Go supports two types of string literals.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;raw-strings : enclosed in back-quotes (`). Even "\n" is also not interpreted as new line.&lt;/li&gt;
+&lt;li&gt;interpreted strings : enclosed in double quotes &lt;code&gt;"&lt;/code&gt;. &lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Operators&lt;/h3&gt;
+&lt;p&gt;Go does not have a separate operator for integer division unlike Python (&lt;code&gt;//&lt;/code&gt;). The division operator, &lt;code&gt;/&lt;/code&gt;, in Go acts much like that in Java and other statically typed languages. See ...&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="mi"&gt;15&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;      &lt;span class="c1"&gt;// acts like integer division, results in 7&lt;/span&gt;
+&lt;span class="mf"&gt;15.0&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;    &lt;span class="c1"&gt;// results in 7.5&lt;/span&gt;
+&lt;span class="mi"&gt;15&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="mf"&gt;2.0&lt;/span&gt;    &lt;span class="c1"&gt;// results in 7.5&lt;/span&gt;
+&lt;span class="mf"&gt;15.0&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="mf"&gt;2.0&lt;/span&gt;  &lt;span class="c1"&gt;// results in 7.5&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Logical Operators : &lt;code&gt;&amp;amp;&amp;amp;&lt;/code&gt;, &lt;code&gt;||&lt;/code&gt; and &lt;code&gt;!&lt;/code&gt;. These are just like those in Java and JavaScript. The equivalent ones in Python are &lt;code&gt;and&lt;/code&gt;, &lt;code&gt;or&lt;/code&gt;, and &lt;code&gt;not&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Go has the familiar bit-wise operators (&lt;code&gt;&amp;amp;&lt;/code&gt;, &lt;code&gt;|&lt;/code&gt;, &lt;code&gt;^&lt;/code&gt;, &lt;code&gt;&amp;lt;&amp;lt;&lt;/code&gt; and &lt;code&gt;&amp;gt;&amp;gt;&lt;/code&gt; ) as well.&lt;/p&gt;
+&lt;h3&gt;Basic Printing&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;fmt.Println()&lt;/code&gt;, &lt;code&gt;fmt.Print()&lt;/code&gt;, and &lt;code&gt;fmt.Printf()&lt;/code&gt; are the simplest and widely used printing functions. &lt;/p&gt;
+&lt;p&gt;&lt;code&gt;fmt.Print()&lt;/code&gt; adds a space between parameters and also a new line at the end.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;fmt.Printf()&lt;/code&gt; takes format strings. A few common ones are ...&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;%d&lt;/code&gt; : decimal (base 10) number&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;%s&lt;/code&gt; : string&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;%T&lt;/code&gt; : type of the variable&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;%v&lt;/code&gt; : any value (use when u don't know exact type)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;%+v&lt;/code&gt; : any value, but with extra information for special types (ex. &lt;code&gt;struct&lt;/code&gt; fields)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;%#v&lt;/code&gt;: same as &lt;code&gt;%+v&lt;/code&gt; but also prints the type of the variables for certain types.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Besides, there is also the &lt;code&gt;S&lt;/code&gt; family of functions that includes &lt;code&gt;fmt.Sprintln()&lt;/code&gt;, &lt;code&gt;fmt.Sprint()&lt;/code&gt;, and &lt;code&gt;fmt.Sprintf()&lt;/code&gt;, which are used for creating strings based on the given format and the &lt;code&gt;F&lt;/code&gt; family of functions that includes &lt;code&gt;fmt.Fprintln()&lt;/code&gt;, &lt;code&gt;fmt.Fprint()&lt;/code&gt; and &lt;code&gt;fmt.Fprintf()&lt;/code&gt;, which are used for writing to files using an &lt;code&gt;io.Writer&lt;/code&gt;.&lt;/p&gt;
+&lt;h3&gt;Pointers&lt;/h3&gt;
+&lt;p&gt;Like other languages .... &lt;code&gt;*&lt;/code&gt; operator dereferences a pointer (gives the value stored at the memory address pointed to by the pointer), &lt;code&gt;&amp;amp;&lt;/code&gt; operator gives the memory address of a variable.&lt;/p&gt;
+&lt;p&gt;The zero value of a pointer type is &lt;code&gt;nil&lt;/code&gt;. As Go allows &lt;code&gt;nil&lt;/code&gt; pointers, i.e., pointers to values that do not exist, it is better to check for &lt;code&gt;pointer != nil&lt;/code&gt; condition before trying to dereference a pointer, otherwise, it will result in run-time errors.&lt;/p&gt;
+&lt;p&gt;Pointers can be created in a few ways ...&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;var a *int&lt;/code&gt; : &lt;code&gt;a&lt;/code&gt; is declared as a pointer type (to integer values). But it's value is&lt;code&gt;nil&lt;/code&gt;. No memory address is allocated yet. If you Printf it with &lt;code&gt;#v&lt;/code&gt;, then you get something like &lt;code&gt;(*int)(nil)&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;var a = new(int)&lt;/code&gt;or &lt;code&gt;a := new(int)&lt;/code&gt;: A memory location is allotted to store &lt;code&gt;int&lt;/code&gt; values. The memory location is initialised with the default zero value of 0. If you Printf it with &lt;code&gt;#v&lt;/code&gt;, then you get some memory location like &lt;code&gt;(*int)(0xc00002c008)&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;a := &amp;amp;b&lt;/code&gt;: Here, &lt;code&gt;b&lt;/code&gt; must already be declared (anyhow it must have been auto-initialised with the zero value). Some special structs allow creating pointers to them without even declaring them first. Ex. &lt;code&gt;a := &amp;amp;time.Time{}&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Function arguments which are normal values (copies) are managed by Go (most of the times) in stacks. Whereas, function arguments which are pointers (pass by reference) are managed by Go in heap memory.&lt;/p&gt;
+&lt;p&gt;Memory in heaps is reclaimed by a complex Garbage collection process and thus managing memory in heaps is comparatively more CPU-intensive than that in stacks.&lt;/p&gt;</content><category term="Go"></category><category term="go"></category><category term="coding"></category></entry><entry><title>Go -- Motivation</title><link href="https://parijathakumar.github.io/go-motivation.html" rel="alternate"></link><published>2020-04-21T15:30:00+05:30</published><updated>2020-04-21T15:30:00+05:30</updated><author><name>Parijatha Kumar</name></author><id>tag:parijathakumar.github.io,2020-04-21:/go-motivation.html</id><summary type="html">&lt;p&gt;They say Go is a statically typed language with a strong type-safe memory model, an inbuilt garbage collector with strong support for channel-based concurrency.&lt;/p&gt;
+&lt;h2&gt;Why I am interested ?&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;It's touted to be a modern C alternative with inbuilt garbage collection and better memory safety (don't know what exactly it is …&lt;/li&gt;&lt;/ul&gt;</summary><content type="html">&lt;p&gt;They say Go is a statically typed language with a strong type-safe memory model, an inbuilt garbage collector with strong support for channel-based concurrency.&lt;/p&gt;
+&lt;h2&gt;Why I am interested ?&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;It's touted to be a modern C alternative with inbuilt garbage collection and better memory safety (don't know what exactly it is !!). Go programs run almost as fast as C programs. I've read that Rust comes to as low-level as C.&lt;/li&gt;
+&lt;li&gt;It statically links all dependencies and builds a single binary. Though this increases the binary file's size, it's better for portability (no dependency hell, works on containers too). Can it also do 'dynamic linking' if required ? Should see. Seems a Go program can be compiled for a different target OS than the one on which it's being compiled. Currently it supports Windows, Linux, macOS, and Android.&lt;/li&gt;
+&lt;li&gt;Best known for it's first hand support for concurrency (with the help of go routines, channels).&lt;/li&gt;
+&lt;li&gt;The designers have deliberately avoided pointer arithmetic (how confusing it was for me in C !!) and multiple inheritance (my Python's experience has shown that multiple inheritance is confusing and can often lead to hard-to debug problems).&lt;/li&gt;
+&lt;li&gt;Another interesting thing about a Go program is that it does not compile if we import a package/library (or a function etc) while not using the imported package/library (or whatever) in our program. This feature keeps the binary file contained to the required size and also helps to avoid circular dependencies.&lt;/li&gt;
+&lt;li&gt;Go does not support method overloading. Sad. May be there are other ways of achieving the same or there are better alternatives.&lt;/li&gt;
+&lt;li&gt;Seems, there is an increasing trend to use it for system programming. See kubernetes and docker.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I've developed some prejudice ... it's fast and more modern compared to C.&lt;/p&gt;</content><category term="Go"></category><category term="go"></category><category term="coding"></category></entry></feed>
