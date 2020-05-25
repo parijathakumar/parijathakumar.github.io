@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="/theme/css/elegant.prod.9e9d5ce754.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="/theme/css/custom.css" media="screen">
+
+        <link rel="dns-prefetch" href="//fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+
+        <meta name="author" content="Parijatha Kumar" />
+
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content="go, coding, Go, " />
+
+<meta property="og:title" content="Go -- Complex Types "/>
+<meta property="og:url" content="/go-complex-types.html" />
+<meta property="og:description" content="Go has ... arrays and slices : both are ordered collections of a single type. Not as flexible as Python lists. maps : key-value pair data structure of a fixed types. Not as flexible as Python dictionaries, because in Go, both the key&#39;s and value&#39;s types are fixed at declaration. In that sense …" />
+<meta property="og:site_name" content="while True: print(&#34;Keep learning&#34;)" />
+<meta property="og:article:author" content="Parijatha Kumar" />
+<meta property="og:article:published_time" content="2020-04-23T17:30:00+05:30" />
+<meta name="twitter:title" content="Go -- Complex Types ">
+<meta name="twitter:description" content="Go has ... arrays and slices : both are ordered collections of a single type. Not as flexible as Python lists. maps : key-value pair data structure of a fixed types. Not as flexible as Python dictionaries, because in Go, both the key&#39;s and value&#39;s types are fixed at declaration. In that sense …">
+
+        <title>Go -- Complex Types  · while True: print(&#34;Keep learning&#34;)
+</title>
+
+
+    </head>
+    <body>
+        <div id="content">
+            <div class="navbar navbar-static-top">
+                <div class="navbar-inner">
+                    <div class="container-fluid">
+                        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </a>
+                        <a class="brand" href="/"><span class=site-name>while True: print("Keep learning")</span></a>
+                        <div class="nav-collapse collapse">
+                            <ul class="nav pull-right top-menu">
+                                <li >
+                                    <a href=
+                                       "/"
+                                    >Home</a>
+                                </li>
+                                <li ><a href="/categories.html">Categories</a></li>
+                                <li ><a href="/tags.html">Tags</a></li>
+                                <li ><a href="/archives.html">Archives</a></li>
+                                <li><form class="navbar-search" action="/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="row-fluid">
+                    <div class="span1"></div>
+                    <div class="span10">
+<article itemscope>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+        <h1>
+            <a href="/go-complex-types.html">
+                Go -- Complex Types
+            </a>
+        </h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+        <div class="span8 offset2 article-content">
+            
+            <p>Go has ...</p>
+<ul>
+<li>arrays and slices : both are ordered collections of a single type. Not as flexible as Python lists.</li>
+<li>maps : key-value pair data structure of a fixed types. Not as flexible as Python dictionaries, because in Go, both the key's and value's types are fixed at declaration. In that sense, Go's structs are a little similar to Python dictionaries.</li>
+<li>structs : A struct in Go allows us to create a custom sub-type (of struct type) that represents a group/collection of related fields of different types. It is somewhat like an object in OO languages. We can also attach functions to struct types.</li>
+<li>interface : It is not a type in itself. But it's a mechanism to create our own custom types in Go.</li>
+</ul>
+<h3>Arrays and Slices</h3>
+<p>arrays have fixed size and slices don't. That's the difference. Declaration and initialisation is same.</p>
+<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">a</span> <span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="kt">string</span> <span class="c1">// declares an array of size 3</span>
+<span class="kd">var</span> <span class="nx">b</span> <span class="p">[]</span><span class="kt">string</span>  <span class="c1">// declares a slice</span>
+
+<span class="nx">c</span> <span class="o">:=</span> <span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="kt">string</span>  <span class="c1">// delcares an array of size 3</span>
+<span class="nx">d</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">int</span>      <span class="c1">// delcares a slice</span>
+
+<span class="c1">// declares and initialises an array of size 3</span>
+<span class="nx">e</span> <span class="o">:=</span> <span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;Books&quot;</span><span class="p">,</span> <span class="s">&quot;Pens&quot;</span><span class="p">,</span> <span class="s">&quot;Pencils&quot;</span><span class="p">}</span>
+<span class="nx">f</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;Books&quot;</span><span class="p">,</span> <span class="s">&quot;Pens&quot;</span><span class="p">,</span> <span class="s">&quot;Pencils&quot;</span><span class="p">}</span>   <span class="c1">// declares and initialises a slice</span>
+
+<span class="c1">// declares an array of size 3 and initialises the first element</span>
+<span class="nx">g</span> <span class="o">:=</span> <span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;Books&quot;</span><span class="p">}</span>
+<span class="c1">// declares an array of size 3 and initialises the first two elements</span>
+<span class="nx">h</span> <span class="o">:=</span> <span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;Books&quot;</span><span class="p">,</span> <span class="s">&quot;Pens&quot;</span><span class="p">}</span>
+
+<span class="c1">// declares and initialises an array of size 3</span>
+<span class="nx">i</span> <span class="o">:=</span> <span class="p">[</span><span class="o">...</span><span class="p">]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;Books&quot;</span><span class="p">,</span> <span class="s">&quot;Pens&quot;</span><span class="p">,</span> <span class="s">&quot;Pencils&quot;</span><span class="p">}</span>
+
+<span class="c1">// can be initialised with indices also</span>
+<span class="c1">// need not specify all indices. Also, indices need not be in order</span>
+<span class="nx">k</span> <span class="o">:=</span> <span class="p">[</span><span class="mi">10</span><span class="p">]</span><span class="kt">int</span><span class="p">{</span><span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span> <span class="mi">10</span><span class="p">}</span>
+</pre></div>
+
+
+<p>This array syntax has some similarities to Java. See ...</p>
+<div class="highlight"><pre><span></span><span class="c1">// just declaring</span>
+<span class="kt">int</span><span class="o">[]</span> <span class="n">ages</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="mi">3</span><span class="o">]</span><span class="p">;</span>
+
+<span class="c1">// with initialisation</span>
+<span class="kt">int</span><span class="o">[]</span> <span class="n">age</span> <span class="o">=</span> <span class="p">{</span><span class="mi">35</span><span class="p">,</span> <span class="mi">36</span><span class="p">,</span> <span class="mi">42</span><span class="p">};</span>
+</pre></div>
+
+
+<p>Arrays are most commonly looped over with conventional <code>for</code> loop like .... <code>for i : 0; i &lt; len(arr); i++ {</code>.</p>
+<p>One interesting thing to note regarding Go collections, including arrays, slices and maps, is that they internally keep track of the length of the collection. They don't recalculate it everytime we call <code>len()</code> on the collection. So, calling <code>len()</code> on a collection in Go does not have any performance penalty. One similarity to note is even in Python, <code>len()</code> is a function, not a method (of lists).</p>
+<p>Slices are arrays in the background. Go manages the array size internally. Slices can be expanded with <code>append()</code> function. Thinking of <code>append()</code>, Python has a similarly named method on lists ... <code>append()</code>. It takes only a single argumanet and also also it changes the parent list itself. In contrast, in Go, <code>append()</code> is a function, it takes variable number of arguments and it gives a new slice (does not change the parent slice).</p>
+
+
+             
+ 
+            
+            
+            
+
+
+
+
+
+
+
+            <hr/>
+        </div>
+        <section id="article-sidebar" class="span2">
+            <h4>Published</h4>
+            <time itemprop="dateCreated" datetime="2020-04-23T17:30:00+05:30">Thu 23 April 2020</time>
+            <h4>Category</h4>
+            <a class="category-link" href="/categories.html#go-ref">Go</a>
+            <h4>Tags</h4>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="/tags.html#coding-ref">coding
+                    <span class="superscript">5</span>
+</a></li>
+                <li><a href="/tags.html#go-ref">go
+                    <span class="superscript">4</span>
+</a></li>
+            </ul>
+            
+
+
+
+
+
+            
+
+
+
+
+
+        </section>
+</div>
+</article>
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe.
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides.
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo https://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>                    </div>
+                    <div class="span1"></div>
+                </div>
+            </div>
+        </div>
+<footer>
+
+
+
+
+    <div id="fpowered">
+        Powered by: <a href="http://getpelican.com/" title="Pelican Home Page" target="_blank" rel="nofollow noopener noreferrer">Pelican</a>
+        Theme: <a href="https://elegant.oncrashreboot.com/" title="Theme Elegant Home Page" target="_blank" rel="nofollow noopener noreferrer">Elegant</a>
+    </div>
+</footer>            <script src="//code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script src="/theme/js/elegant.prod.9e9d5ce754.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+
+    <script>
+    (function () {
+        if (window.location.hash.match(/^#comment-\d+$/)) {
+            $('#comment_thread').collapse('show');
+        }
+    })();
+    window.onhashchange=function(){
+        if (window.location.hash.match(/^#comment-\d+$/))
+            window.location.reload(true);
+    }
+    $('#comment_thread').on('shown', function () {
+        var link = document.getElementById('comment-accordion-toggle');
+        var old_innerHTML = link.innerHTML;
+        $(link).fadeOut(200, function() {
+            $(this).text('Click here to hide comments').fadeIn(200);
+        });
+        $('#comment_thread').on('hidden', function () {
+            $(link).fadeOut(200, function() {
+                $(this).text(old_innerHTML).fadeIn(200);
+            });
+        })
+    })
+</script>
+
+    </body>
+    <!-- Theme: Elegant built for Pelican
+        License : MIT -->
+</html>

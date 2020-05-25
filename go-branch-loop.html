@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="/theme/css/elegant.prod.9e9d5ce754.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="/theme/css/custom.css" media="screen">
+
+        <link rel="dns-prefetch" href="//fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+
+        <meta name="author" content="Parijatha Kumar" />
+
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content="go, coding, Go, " />
+
+<meta property="og:title" content="Go -- Branching and Looping "/>
+<meta property="og:url" content="/go-branch-loop.html" />
+<meta property="og:description" content="Branching Two types ... if, else and else if statements switch statement If ... else syntax if a%2 == 0 { // do something } else if a == 3 { // do something } else { // do something } With some inline initialisation ... if err := validate(something); err != nil { // do something } There are some rules for above initialisation version. The …" />
+<meta property="og:site_name" content="while True: print(&#34;Keep learning&#34;)" />
+<meta property="og:article:author" content="Parijatha Kumar" />
+<meta property="og:article:published_time" content="2020-04-23T17:30:00+05:30" />
+<meta name="twitter:title" content="Go -- Branching and Looping ">
+<meta name="twitter:description" content="Branching Two types ... if, else and else if statements switch statement If ... else syntax if a%2 == 0 { // do something } else if a == 3 { // do something } else { // do something } With some inline initialisation ... if err := validate(something); err != nil { // do something } There are some rules for above initialisation version. The …">
+
+        <title>Go -- Branching and Looping  · while True: print(&#34;Keep learning&#34;)
+</title>
+
+
+    </head>
+    <body>
+        <div id="content">
+            <div class="navbar navbar-static-top">
+                <div class="navbar-inner">
+                    <div class="container-fluid">
+                        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </a>
+                        <a class="brand" href="/"><span class=site-name>while True: print("Keep learning")</span></a>
+                        <div class="nav-collapse collapse">
+                            <ul class="nav pull-right top-menu">
+                                <li >
+                                    <a href=
+                                       "/"
+                                    >Home</a>
+                                </li>
+                                <li ><a href="/categories.html">Categories</a></li>
+                                <li ><a href="/tags.html">Tags</a></li>
+                                <li ><a href="/archives.html">Archives</a></li>
+                                <li><form class="navbar-search" action="/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="row-fluid">
+                    <div class="span1"></div>
+                    <div class="span10">
+<article itemscope>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+        <h1>
+            <a href="/go-branch-loop.html">
+                Go -- Branching and Looping
+            </a>
+        </h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+        <div class="span8 offset2 article-content">
+            
+            <h2>Branching</h2>
+<p>Two types ...</p>
+<ul>
+<li><code>if</code>, <code>else</code> and <code>else if</code> statements</li>
+<li><code>switch</code> statement</li>
+</ul>
+<h3>If ... else syntax</h3>
+<div class="highlight"><pre><span></span><span class="k">if</span> <span class="nx">a</span><span class="o">%</span><span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span> <span class="p">{</span>
+    <span class="c1">// do something</span>
+<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="nx">a</span> <span class="o">==</span> <span class="mi">3</span> <span class="p">{</span>
+    <span class="c1">// do something</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="c1">// do something</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>With some inline initialisation ...</p>
+<div class="highlight"><pre><span></span><span class="k">if</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">validate</span><span class="p">(</span><span class="nx">something</span><span class="p">);</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+    <span class="c1">// do something</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>There are some rules for above initialisation version.</p>
+<ul>
+<li>The initialised variable (<code>err</code> above) goes out of scope once the <code>if</code> block exits.</li>
+<li>Only the short hand assignment ( <code>:=</code> ) is allowed. <code>var</code> keyword is not allowed.</li>
+<li>Only some simple assignments are allowed.</li>
+</ul>
+<h3>Switch statement</h3>
+<p>Python does not have one. Java has and JavaScript also has.</p>
+<p>Go has two types of <code>switch</code> statements .... expression switch and type switch.</p>
+<h4>Expression switch</h4>
+<div class="highlight"><pre><span></span><span class="k">switch</span> <span class="p">&lt;</span><span class="nx">some</span> <span class="nx">initialisation</span><span class="p">&gt;;</span> <span class="p">&lt;</span><span class="nx">switch_expresion</span><span class="p">&gt;</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="nx">expression1</span><span class="p">:</span>
+        <span class="c1">// statements. See there are no braces here.</span>
+    <span class="k">case</span> <span class="nx">expression2</span><span class="p">,</span> <span class="nx">expression3</span><span class="p">:</span>
+        <span class="c1">// statements</span>
+    <span class="k">default</span><span class="p">:</span>
+        <span class="c1">// statements</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<ul>
+<li>The initialisation is same as <code>if</code>. It's scope is limited to the <code>switch</code> statement. It is optional.</li>
+<li>The <switch_expression> is also optional. If it is not provided and initialisation is provided, then the syntax becomes like <code>switch &lt;some initialisation&gt;; {</code>. If both are omitted, then the switch expression evaluates to <code>true</code> and it looks like <code>switch {</code>.</li>
+<li>When the <switch_expression> is given, the value of the <switch_expression> is checked against the case expressions for equality. If multiple expressions are given in the same case, then one of them must be equal to the value of <switch_expression> for the case to execute.</li>
+<li>When the <switch_expression> is not given, then each case expression is evaluated for <code>true</code> or <code>false</code>. </li>
+<li>At least one <code>case</code> block (other than the <code>default</code>) is compulsory.</li>
+<li>In other languages, the execution falls (goes) through all the subsequent cases after a match is found, unless we use a <code>break</code> statement. This is exactly opposite in Go. Here, the when a match is found, only that case's statements are executed and the switch exits. If we want the execution to fall through the subsequent cases as well (like other languages), then we must add a <code>fallthrough</code> statement at the end of the statements of the matching case and all the required subsequent cases.</li>
+<li>If no match is found, and if a <code>default</code> case is provided, then it will be executed. It acts like <code>else</code> of an <code>if</code> statement.</li>
+</ul>
+<h4>Type switch</h4>
+<p>pass</p>
+<h2>Looping</h2>
+<p>Go supports only one type of loop construct ... <code>for</code>. But it is flexible enough.</p>
+<p>It can take three forms broadly.</p>
+<ul>
+<li>Conventional C-type :  <code>for &lt;initialisation&gt;; &lt;condition&gt;; &lt;post_statement&gt; {</code> </li>
+<li>Looping directly over Iterables :  <code>for &lt;condition&gt; {</code>. This is the only way Python supports.</li>
+<li>Looping over unordered collections with the help of <code>range</code> keyword.</li>
+</ul>
+<p><code>break</code> and <code>continue</code> are available in Go.</p>
+<h4>Use of <code>range</code> keyword :</h4>
+<p><code>range</code> iterates over a variety of data structures. The following example from ______ is a very good example. </p>
+<div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="s">&quot;fmt&quot;</span>
+
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+
+    <span class="nx">nums</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">int</span><span class="p">{</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">}</span>
+
+    <span class="c1">// `range` on arrays and slices provides both the</span>
+    <span class="c1">// index and value for each entry.</span>
+    <span class="k">for</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">num</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">nums</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="nx">num</span> <span class="o">==</span> <span class="mi">3</span> <span class="p">{</span>
+            <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;index:&quot;</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="c1">// we can ignore any one of the variables with a &#39;_&#39;</span>
+    <span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">num</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">nums</span> <span class="p">{</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">num</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="c1">// `range` on map iterates over key/value pairs.</span>
+    <span class="nx">kvs</span> <span class="o">:=</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;a&quot;</span><span class="p">:</span> <span class="s">&quot;apple&quot;</span><span class="p">,</span> <span class="s">&quot;b&quot;</span><span class="p">:</span> <span class="s">&quot;banana&quot;</span><span class="p">}</span>
+    <span class="k">for</span> <span class="nx">k</span><span class="p">,</span> <span class="nx">v</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">kvs</span> <span class="p">{</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;%s -&gt; %s\n&quot;</span><span class="p">,</span> <span class="nx">k</span><span class="p">,</span> <span class="nx">v</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="c1">// `range` can also iterate over just the keys of a map.</span>
+    <span class="c1">// Strange. There is no change on the use of &#39;range&#39; keyword on the</span>
+    <span class="c1">// right hand side of the assignment. It&#39;s only that we are</span>
+    <span class="c1">// now assigning to one variable on the left side.</span>
+    <span class="k">for</span> <span class="nx">k</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">kvs</span> <span class="p">{</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;key:&quot;</span><span class="p">,</span> <span class="nx">k</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="c1">// `range` on strings iterates over Unicode code</span>
+    <span class="c1">// points. The first value is the starting byte index</span>
+    <span class="c1">// of the `rune` and the second the `rune` itself.</span>
+    <span class="c1">// This very important. Conventional c-type looping over the length of</span>
+    <span class="c1">// a string, gives the individual bytes, not the runes.</span>
+    <span class="k">for</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">c</span> <span class="o">:=</span> <span class="k">range</span> <span class="s">&quot;go&quot;</span> <span class="p">{</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">i</span><span class="p">,</span> <span class="nx">c</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<ul>
+<li><code>range</code> on slices and arrays works somewhat like the <code>enumerate()</code> function (from 'collections' module) in Python.</li>
+<li>Just like in Python, we can ignore some return values (in assignments) with underscore  <code>_</code>.</li>
+<li><code>range</code> on maps is strange. If we assign to two variables, then we get both the key value pair. If we assign to one variable only, then we get only the key. I don't understand why the second way is made available when we can ignore any of the returned variables (key or value) with the underscore <code>_</code> assignment. Like <code>for key, _ := range some_map {</code> . But, it seems Go does not recommend that way. In fact, the <code>gofmt</code> tool automatically converts such statements to single assignments.</li>
+<li><code>range</code> on strings also is noteworthy. Given that a string is just a sequence of bytes, <code>range</code> does not just simply iterates over the bytes. Rather, it returns unicode code points (or <code>rune</code> type values). This is always the preferred way for looping over the characters of a string, in that case.</li>
+</ul>
+
+
+             
+ 
+            
+            
+            
+
+
+
+
+
+
+
+            <hr/>
+        </div>
+        <section id="article-sidebar" class="span2">
+            <h4>Published</h4>
+            <time itemprop="dateCreated" datetime="2020-04-23T17:30:00+05:30">Thu 23 April 2020</time>
+            <h4>Category</h4>
+            <a class="category-link" href="/categories.html#go-ref">Go</a>
+            <h4>Tags</h4>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="/tags.html#coding-ref">coding
+                    <span class="superscript">5</span>
+</a></li>
+                <li><a href="/tags.html#go-ref">go
+                    <span class="superscript">4</span>
+</a></li>
+            </ul>
+            
+
+
+
+
+
+            
+
+
+
+
+
+        </section>
+</div>
+</article>
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe.
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides.
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo https://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>                    </div>
+                    <div class="span1"></div>
+                </div>
+            </div>
+        </div>
+<footer>
+
+
+
+
+    <div id="fpowered">
+        Powered by: <a href="http://getpelican.com/" title="Pelican Home Page" target="_blank" rel="nofollow noopener noreferrer">Pelican</a>
+        Theme: <a href="https://elegant.oncrashreboot.com/" title="Theme Elegant Home Page" target="_blank" rel="nofollow noopener noreferrer">Elegant</a>
+    </div>
+</footer>            <script src="//code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script src="/theme/js/elegant.prod.9e9d5ce754.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+
+    <script>
+    (function () {
+        if (window.location.hash.match(/^#comment-\d+$/)) {
+            $('#comment_thread').collapse('show');
+        }
+    })();
+    window.onhashchange=function(){
+        if (window.location.hash.match(/^#comment-\d+$/))
+            window.location.reload(true);
+    }
+    $('#comment_thread').on('shown', function () {
+        var link = document.getElementById('comment-accordion-toggle');
+        var old_innerHTML = link.innerHTML;
+        $(link).fadeOut(200, function() {
+            $(this).text('Click here to hide comments').fadeIn(200);
+        });
+        $('#comment_thread').on('hidden', function () {
+            $(link).fadeOut(200, function() {
+                $(this).text(old_innerHTML).fadeIn(200);
+            });
+        })
+    })
+</script>
+
+    </body>
+    <!-- Theme: Elegant built for Pelican
+        License : MIT -->
+</html>

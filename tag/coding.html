@@ -1,223 +1,152 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-        <meta charset="utf-8" />
-        <title>NOTES (that only make sense to me) - coding</title>
-        <link rel="stylesheet" href="https://parijathakumar.github.io/theme/css/main.css" />
-        <link href="https://parijathakumar.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="NOTES (that only make sense to me) Atom Feed" />
-</head>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="/theme/css/elegant.prod.9e9d5ce754.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="/theme/css/custom.css" media="screen">
+        <link rel="dns-prefetch" href="//fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
 
-<body id="index" class="home">
-        <header id="banner" class="body">
-                <h1><a href="https://parijathakumar.github.io/">NOTES (that only make sense to me) </a></h1>
-                <nav><ul>
-                    <li><a href="https://parijathakumar.github.io/category/go.html">Go</a></li>
-                </ul></nav>
-        </header><!-- /#banner -->
+        <meta name="author" content="Parijatha Kumar" />
 
-            <aside id="featured" class="body">
-                <article>
-                    <h1 class="entry-title"><a href="https://parijathakumar.github.io/go-basics.html">Go -- Basics</a></h1>
-<footer class="post-info">
-        <abbr class="published" title="2020-04-22T17:30:00+05:30">
-                Published: Wed 22 April 2020
-        </abbr>
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
 
-        <address class="vcard author">
-                By                         <a class="url fn" href="https://parijathakumar.github.io/author/parijatha-kumar.html">Parijatha Kumar</a>
-        </address>
-<p>In <a href="https://parijathakumar.github.io/category/go.html">Go</a>.</p>
-<p>tags: <a href="https://parijathakumar.github.io/tag/go.html">go</a> <a href="https://parijathakumar.github.io/tag/coding.html">coding</a> </p>
-</footer><!-- /.post-info --><h2>Program Structure and Environment</h2>
-<p>Source files have ".go" extension.</p>
-<p>Every file starts with a package namespace declaration. All ".go" files in the same directory must have the same package declaration and thus belong to the same package.</p>
-<p>Program execution starts at the <code>main()</code> function in the <code>main</code> package. So, for the program to be executable ...</p>
-<ul>
-<li>there must be a <code>main</code> package. This is somewhat similar to Java where there must be a <code>Main.java</code> file. In Java, the file itself must be named as <code>Main.java</code>, whereas in Go, only the package namespace must be called <code>main</code>, the directory name can be anything.</li>
-<li>there must be one and only one file in that <code>main</code> package with a <code>main()</code> function. This is also similar to Java where there must be a <code>Main</code> class (in <code>Main.java</code> file) having a function with a specific signature (<code>public static void main(String[] args)</code>).</li>
-</ul>
-<p>There is no such requirement for Python though we often use the <code>if __name__ == "__main__":</code> pattern.</p>
-<p>If the program is not required to be executed on it's own, then there need not be a <code>main</code> package.</p>
-<div class="highlight"><pre><span></span><span class="c1">// &#39;package&#39; statement namespaces this file.</span>
-<span class="c1">// main package is compulsory for executable programs.</span>
-<span class="kn">package</span> <span class="nx">main</span>
-<span class="kn">import</span> <span class="s">&quot;fmt&quot;</span>
-<span class="c1">// main() function is the entry point of the program (not just this single file).</span>
-<span class="c1">// &#39;main&#39; package MUST have a function named main().</span>
-<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
-    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;hello world&quot;</span><span class="p">)</span>
-<span class="p">}</span>
-</pre></div>
+<meta property="og:title" content="while True: print(&#34;Keep learning&#34;)"/>
+<meta name="twitter:title" content="while True: print(&#34;Keep learning&#34;)">
+<meta property="og:url" content="" />
+<meta property="og:site_name" content="while True: print(&#34;Keep learning&#34;)" />
+<meta property="og:article:author" content="Parijatha Kumar" />
+<meta name="keywords" content=" coding,  containers,  go,  podman,  resources,  Go,  Knowledge-base,  Programming, " />
+        <title>while True: print("Keep learning") - coding tag</title>
 
 
-<p>Compile with <code>go build file_name.go</code>. Or else build and run with <code>go run file_name.go</code>.</p>
-<p>Go needs semi-colons as the statement terminators as per grammar rules. But the lexer will auto-insert one if there is no ambiguity. Because of this, Go recommends that we avoid putting semi-colon on each line unless it is absolutely necessary. In fact, Go's own auto-formatting tool <code>gofmt</code> will remove unnecessary semi-colons. This <a href="https://groups.google.com/forum/#!topic/golang-nuts/XuMrWI0Q8uk">post</a> is interesting to read.</p>
-<p>Because of this auto-inserting-semi-colon feature, there is a tricky side-effect to understand. The <code>{</code> on the same line at the end of the function definition above (<code>func main() {</code>) is not a style, it is a must. If it is omitted (for example, if we want to style it by entering the opening curly brace on the next line), Go will insert a semi-colon after <code>main()</code> and thus the next line's <code>{</code> doesn't have any meaning by itself and thus the program doesn't compile.</p>
-<p>A function or variable can be imported from other packages only if it's name starts with a capital letter. Strange. Also, unlike Python, Go programs don't compile if we import a function and don't use it. But there is a workaround for it by placing an underscore in front of the imported function name.</p>
-<p>Comments are more like Java. <code>//</code> and <code>/* ...... */</code>.</p>
-<h2>Basics</h2>
-<h3>Variables and Constants</h3>
-<p>Variables can be declared in a few different ways ...</p>
-<div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
-<span class="c1">// package scope</span>
-
-<span class="c1">// When declaring in package scope, the keyword var is compulsory because</span>
-<span class="c1">// any statement in package scope must start with a Go keyword.</span>
-<span class="c1">// So months := 35 is invalid here.</span>
-<span class="kd">var</span> <span class="nx">months</span> <span class="kt">int</span> <span class="p">=</span> <span class="mi">35</span>
-
-<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
-    <span class="c1">// function scope of function &#39;main&#39;</span>
-
-    <span class="c1">// the := shortcut works only in the function scope.</span>
-    <span class="nx">distanceInKm</span> <span class="o">:=</span> <span class="mf">43.5</span>  <span class="c1">// infers the type as float</span>
-
-    <span class="c1">// multiple variables can also be initialised at once with := shortcut</span>
-    <span class="nx">name</span><span class="p">,</span> <span class="nx">knowEnglish</span><span class="p">,</span> <span class="nx">age</span> <span class="o">:=</span> <span class="s">&quot;Lakshmi&quot;</span><span class="p">,</span> <span class="kc">true</span><span class="p">,</span> <span class="mi">38</span>
-
-    <span class="c1">// we can use var in function scope too</span>
-    <span class="kd">var</span> <span class="nx">years</span> <span class="kt">int</span> <span class="p">=</span> <span class="mi">35</span>
-
-    <span class="c1">// multiple variables can be declared in one line with var</span>
-    <span class="kd">var</span> <span class="nx">apples</span><span class="p">,</span> <span class="nx">oranges</span> <span class="kt">int</span>  <span class="c1">// d and e get zero value of int type i.e., 0</span>
-    <span class="kd">var</span> <span class="nx">firstName</span><span class="p">,</span> <span class="nx">secondName</span> <span class="kt">string</span> <span class="c1">// f and g get zero value of string type i.e., &quot;&quot;</span>
-
-    <span class="c1">// multiple variables can be declared and optionally</span>
-    <span class="c1">// initialised at once like so ...</span>
-    <span class="kd">var</span> <span class="p">(</span>
-        <span class="nx">person</span> <span class="kt">string</span> <span class="p">=</span> <span class="s">&quot;Nani&quot;</span>
-        <span class="nx">isMarried</span> <span class="kt">bool</span> <span class="p">=</span> <span class="kc">true</span>
-        <span class="nx">isEmployed</span> <span class="kt">bool</span>
-    <span class="p">)</span>
-<span class="p">}</span>
-</pre></div>
+    </head>
+    <body>
+        <div id="content">
+            <div class="navbar navbar-static-top">
+                <div class="navbar-inner">
+                    <div class="container-fluid">
+                        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </a>
+                        <a class="brand" href="/"><span class=site-name>while True: print("Keep learning")</span></a>
+                        <div class="nav-collapse collapse">
+                            <ul class="nav pull-right top-menu">
+                                <li >
+                                    <a href=
+                                       "/"
+                                    >Home</a>
+                                </li>
+                                <li ><a href="/categories.html">Categories</a></li>
+                                <li ><a href="/tags.html">Tags</a></li>
+                                <li ><a href="/archives.html">Archives</a></li>
+                                <li><form class="navbar-search" action="/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="row-fluid">
+                    <div class="span1"></div>
+                    <div class="span10">
 
 
-<p>As Go is UTF-8 compliant, variable names need not be in English only. They can be in any language. Only rule is it must start with either a letter or <code>_</code> and then it can contain letters, digits and <code>_</code>.</p>
-<p>The zero values are :</p>
-<ul>
-<li>0 for a number type like <code>int</code> and <code>float</code></li>
-<li>"" for <code>string</code> type</li>
-<li><code>false</code> for <code>bool</code> type</li>
-<li>The special <code>nil</code> for other types (pointers, functions, interfaces, slices, channels and maps)</li>
-</ul>
-<p>Constants can be declared just like variables, with a <code>const</code> keyword instead.</p>
-<div class="highlight"><pre><span></span><span class="kd">const</span> <span class="nx">a</span> <span class="p">=</span> <span class="mi">32</span>  <span class="c1">// := operator not allowed for const declarations</span>
-<span class="kd">const</span> <span class="nx">b</span> <span class="kt">int</span> <span class="p">=</span> <span class="mi">64</span>
-<span class="kd">const</span> <span class="p">(</span>
-    <span class="nx">c</span> <span class="p">=</span> <span class="mf">32.5</span>
-    <span class="nx">d</span> <span class="kt">string</span> <span class="p">=</span> <span class="s">&quot;Venu&quot;</span>
-<span class="p">)</span>
-</pre></div>
+<div class="row-fluid">
+
+    <div class="row-fluid">
+
+    </div>
+
+    <div class="row-fluid">
+        <div class="span8 offset2">
+            <header>
+            <h1 id="recent-posts">Recent Posts <a id="allposts" href="/archives.html">all posts</a></h1>
+            </header>
+        <div class="recent-posts">
+            <div itemscope class="recent-posts-article">
+                <a href="/go-branch-loop.html">
+                    Go -- Branching and Looping
+                </a>
+                <div class="recent-posts-posted">
+                    posted in
+                    <a href="/categories.html#go-ref">Go</a>
+                    <time itemprop="dateCreated" datetime="2020-04-23T17:30:00+05:30">Thu 23 April 2020</time>
+                </div>
+            </div>
+            <div itemscope class="recent-posts-article">
+                <a href="/go-complex-types.html">
+                    Go -- Complex Types
+                </a>
+                <div class="recent-posts-posted">
+                    posted in
+                    <a href="/categories.html#go-ref">Go</a>
+                    <time itemprop="dateCreated" datetime="2020-04-23T17:30:00+05:30">Thu 23 April 2020</time>
+                </div>
+            </div>
+            <div itemscope class="recent-posts-article">
+                <a href="/steps-to-learn-another-lang.html">
+                    Steps to learn another Language
+                </a>
+                <div class="recent-posts-posted">
+                    posted in
+                    <a href="/categories.html#programming-ref">Programming</a>
+                    <time itemprop="dateCreated" datetime="2020-04-23T15:30:00+05:30">Thu 23 April 2020</time>
+                </div>
+            </div>
+            <div itemscope class="recent-posts-article">
+                <a href="/go-basics.html">
+                    Go -- Basics
+                </a>
+                <div class="recent-posts-posted">
+                    posted in
+                    <a href="/categories.html#go-ref">Go</a>
+                    <time itemprop="dateCreated" datetime="2020-04-22T17:30:00+05:30">Wed 22 April 2020</time>
+                </div>
+            </div>
+            <div itemscope class="recent-posts-article">
+                <a href="/go-motivation.html">
+                    Go -- Motivation
+                </a>
+                <div class="recent-posts-posted">
+                    posted in
+                    <a href="/categories.html#go-ref">Go</a>
+                    <time itemprop="dateCreated" datetime="2020-04-21T15:30:00+05:30">Tue 21 April 2020</time>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+                    </div>
+                    <div class="span1"></div>
+                </div>
+            </div>
+        </div>
+<footer>
 
 
-<p>When we want to create some sort of Enum functioality, we can use the <code>iota</code> keyword and <code>const</code> declarations to create one.</p>
-<div class="highlight"><pre><span></span><span class="kd">const</span> <span class="p">(</span>
-  <span class="nx">Sunday</span> <span class="p">=</span> <span class="kc">iota</span>
-  <span class="nx">Monday</span>
-  <span class="nx">Tuesday</span>
-  <span class="nx">Wednesday</span>
-  <span class="nx">Thursday</span>
-  <span class="nx">Friday</span>
-  <span class="nx">Saturday</span>
-<span class="p">)</span>
-<span class="c1">// iota auto assigns the numbers.</span>
-<span class="c1">// iota also takes care when we later add another constant in between.</span>
-</pre></div>
 
 
-<h3>Core Types</h3>
-<ul>
-<li>booleans : <code>bool</code>. Can be <code>true</code> and <code>false</code>. In Python, they are <code>True</code> and <code>False</code>.</li>
-<li>integers : <code>uint8</code>, <code>uint16</code>,<code>uint32</code>, <code>uint64</code> and <code>int8</code>, <code>int16</code>, <code>int32</code> and <code>int64</code>. <code>byte</code> is alias for <code>uint8</code>. <code>rune</code> is alias for <code>int32</code>. Also, there are <code>uint</code> and <code>int</code> which are platform dependent (32-bit or 64-bit). Important thing to note is that <code>int</code> is a different type from either of the <code>int32</code> or <code>int64</code> types, even if the values are equal. If u need even bigger numbers than <code>uint32</code> or <code>uint64</code>, then u can use <code>math/big</code>. Also, one more thing to note is if we try to assign values above the maximum allowed for that type, then Go raises an "overflows" error. But, if we increment the number beyond the max allowed one in the code, then Go will not raise any error, instead, it silently wraps around from the smallest number side of that type. This is dangerous if not taken care.</li>
-<li>floats : <code>float32</code> and <code>float64</code>.</li>
-<li>text : </li>
-<li><code>string</code> : Go strings are simple slices (arrays) of bytes. Nothing more than that. As Go needs to support more than one type of encoding (though the default preferred one is UTF-8), Go strings do not assume any encoding on their own. So, they are just sequence of raw bytes. This is similar to the setup in Python2. That's why <code>len()</code> on a string variable gives only the number of raw bytes, not the number of characters.</li>
-<li><code>rune</code> : It's character type that stores a single UTF-8 multi-byte character. To figure out the number of characters of a string variable, we need to make a slice of <code>rune</code> type from it, and then apply <code>len()</code> on that slice.</li>
-<li>the special <code>nil</code>: In fact, it's not a type. It's a special value which represents empty value of empty type.</li>
-</ul>
-<h3>Literals</h3>
-<p>Literals are the way you provide values to a variable. Go supports two types of string literals.</p>
-<ul>
-<li>raw-strings : enclosed in back-quotes (`). Even "\n" is also not interpreted as new line.</li>
-<li>interpreted strings : enclosed in double quotes <code>"</code>. </li>
-</ul>
-<h3>Operators</h3>
-<p>Go does not have a separate operator for integer division unlike Python (<code>//</code>). The division operator, <code>/</code>, in Go acts much like that in Java and other statically typed languages. See ...</p>
-<div class="highlight"><pre><span></span><span class="mi">15</span> <span class="o">/</span> <span class="mi">2</span>      <span class="c1">// acts like integer division, results in 7</span>
-<span class="mf">15.0</span> <span class="o">/</span> <span class="mi">2</span>    <span class="c1">// results in 7.5</span>
-<span class="mi">15</span> <span class="o">/</span> <span class="mf">2.0</span>    <span class="c1">// results in 7.5</span>
-<span class="mf">15.0</span> <span class="o">/</span> <span class="mf">2.0</span>  <span class="c1">// results in 7.5</span>
-</pre></div>
-
-
-<p>Logical Operators : <code>&amp;&amp;</code>, <code>||</code> and <code>!</code>. These are just like those in Java and JavaScript. The equivalent ones in Python are <code>and</code>, <code>or</code>, and <code>not</code>.</p>
-<p>Go has the familiar bit-wise operators (<code>&amp;</code>, <code>|</code>, <code>^</code>, <code>&lt;&lt;</code> and <code>&gt;&gt;</code> ) as well.</p>
-<h3>Basic Printing</h3>
-<p><code>fmt.Println()</code>, <code>fmt.Print()</code>, and <code>fmt.Printf()</code> are the simplest and widely used printing functions. </p>
-<p><code>fmt.Print()</code> adds a space between parameters and also a new line at the end.</p>
-<p><code>fmt.Printf()</code> takes format strings. A few common ones are ...</p>
-<ul>
-<li><code>%d</code> : decimal (base 10) number</li>
-<li><code>%s</code> : string</li>
-<li><code>%T</code> : type of the variable</li>
-<li><code>%v</code> : any value (use when u don't know exact type)</li>
-<li><code>%+v</code> : any value, but with extra information for special types (ex. <code>struct</code> fields)</li>
-<li><code>%#v</code>: same as <code>%+v</code> but also prints the type of the variables for certain types.</li>
-</ul>
-<p>Besides, there is also the <code>S</code> family of functions that includes <code>fmt.Sprintln()</code>, <code>fmt.Sprint()</code>, and <code>fmt.Sprintf()</code>, which are used for creating strings based on the given format and the <code>F</code> family of functions that includes <code>fmt.Fprintln()</code>, <code>fmt.Fprint()</code> and <code>fmt.Fprintf()</code>, which are used for writing to files using an <code>io.Writer</code>.</p>
-<h3>Pointers</h3>
-<p>Like other languages .... <code>*</code> operator dereferences a pointer (gives the value stored at the memory address pointed to by the pointer), <code>&amp;</code> operator gives the memory address of a variable.</p>
-<p>The zero value of a pointer type is <code>nil</code>. As Go allows <code>nil</code> pointers, i.e., pointers to values that do not exist, it is better to check for <code>pointer != nil</code> condition before trying to dereference a pointer, otherwise, it will result in run-time errors.</p>
-<p>Pointers can be created in a few ways ...</p>
-<ul>
-<li><code>var a *int</code> : <code>a</code> is declared as a pointer type (to integer values). But it's value is<code>nil</code>. No memory address is allocated yet. If you Printf it with <code>#v</code>, then you get something like <code>(*int)(nil)</code>.</li>
-<li><code>var a = new(int)</code>or <code>a := new(int)</code>: A memory location is allotted to store <code>int</code> values. The memory location is initialised with the default zero value of 0. If you Printf it with <code>#v</code>, then you get some memory location like <code>(*int)(0xc00002c008)</code>.</li>
-<li><code>a := &amp;b</code>: Here, <code>b</code> must already be declared (anyhow it must have been auto-initialised with the zero value). Some special structs allow creating pointers to them without even declaring them first. Ex. <code>a := &amp;time.Time{}</code>.</li>
-</ul>
-<p>Function arguments which are normal values (copies) are managed by Go (most of the times) in stacks. Whereas, function arguments which are pointers (pass by reference) are managed by Go in heap memory.</p>
-<p>Memory in heaps is reclaimed by a complex Garbage collection process and thus managing memory in heaps is comparatively more CPU-intensive than that in stacks.</p>                </article>
-            </aside><!-- /#featured -->
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="https://parijathakumar.github.io/go-motivation.html" rel="bookmark"
-                           title="Permalink to Go -- Motivation">Go -- Motivation</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2020-04-21T15:30:00+05:30">
-                Published: Tue 21 April 2020
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="https://parijathakumar.github.io/author/parijatha-kumar.html">Parijatha Kumar</a>
-        </address>
-<p>In <a href="https://parijathakumar.github.io/category/go.html">Go</a>.</p>
-<p>tags: <a href="https://parijathakumar.github.io/tag/go.html">go</a> <a href="https://parijathakumar.github.io/tag/coding.html">coding</a> </p>
-</footer><!-- /.post-info -->                <p>They say Go is a statically typed language with a strong type-safe memory model, an inbuilt garbage collector with strong support for channel-based concurrency.</p>
-<h2>Why I am interested ?</h2>
-<ul>
-<li>It's touted to be a modern C alternative with inbuilt garbage collection and better memory safety (don't know what exactly it is …</li></ul>
-                <a class="readmore" href="https://parijathakumar.github.io/go-motivation.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
-                </ol><!-- /#posts-list -->
-                </section><!-- /#content -->
-        <section id="extras" class="body">
-                <div class="social">
-                        <h2>social</h2>
-                        <ul>
-                            <li><a href="https://parijathakumar.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
-
-                        </ul>
-                </div><!-- /.social -->
-        </section><!-- /#extras -->
-
-</body>
+    <div id="fpowered">
+        Powered by: <a href="http://getpelican.com/" title="Pelican Home Page" target="_blank" rel="nofollow noopener noreferrer">Pelican</a>
+        Theme: <a href="https://elegant.oncrashreboot.com/" title="Theme Elegant Home Page" target="_blank" rel="nofollow noopener noreferrer">Elegant</a>
+    </div>
+</footer>        <script src="//code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script src="/theme/js/elegant.prod.9e9d5ce754.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+    </body>
+    <!-- Theme: Elegant built for Pelican
+        License : MIT -->
 </html>

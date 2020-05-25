@@ -1,39 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-        <meta charset="utf-8" />
-        <title>Go -- Basics</title>
-        <link rel="stylesheet" href="https://parijathakumar.github.io/theme/css/main.css" />
-        <link href="https://parijathakumar.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="NOTES (that only make sense to me) Atom Feed" />
-</head>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="/theme/css/elegant.prod.9e9d5ce754.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="/theme/css/custom.css" media="screen">
 
-<body id="index" class="home">
-        <header id="banner" class="body">
-                <h1><a href="https://parijathakumar.github.io/">NOTES (that only make sense to me) </a></h1>
-                <nav><ul>
-                    <li class="active"><a href="https://parijathakumar.github.io/category/go.html">Go</a></li>
-                </ul></nav>
-        </header><!-- /#banner -->
-<section id="content" class="body">
-  <article>
-    <header>
-      <h1 class="entry-title">
-        <a href="https://parijathakumar.github.io/go-basics.html" rel="bookmark"
-           title="Permalink to Go -- Basics">Go -- Basics</a></h1>
+        <link rel="dns-prefetch" href="//fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+
+        <meta name="author" content="Parijatha Kumar" />
+
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content="go, coding, Go, " />
+
+<meta property="og:title" content="Go -- Basics "/>
+<meta property="og:url" content="/go-basics.html" />
+<meta property="og:description" content="Basic structure, types and variable declaration" />
+<meta property="og:site_name" content="while True: print(&#34;Keep learning&#34;)" />
+<meta property="og:article:author" content="Parijatha Kumar" />
+<meta property="og:article:published_time" content="2020-04-22T17:30:00+05:30" />
+<meta name="twitter:title" content="Go -- Basics ">
+<meta name="twitter:description" content="Basic structure, types and variable declaration">
+
+        <title>Go -- Basics  · while True: print(&#34;Keep learning&#34;)
+</title>
+
+
+    </head>
+    <body>
+        <div id="content">
+            <div class="navbar navbar-static-top">
+                <div class="navbar-inner">
+                    <div class="container-fluid">
+                        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </a>
+                        <a class="brand" href="/"><span class=site-name>while True: print("Keep learning")</span></a>
+                        <div class="nav-collapse collapse">
+                            <ul class="nav pull-right top-menu">
+                                <li >
+                                    <a href=
+                                       "/"
+                                    >Home</a>
+                                </li>
+                                <li ><a href="/categories.html">Categories</a></li>
+                                <li ><a href="/tags.html">Tags</a></li>
+                                <li ><a href="/archives.html">Archives</a></li>
+                                <li><form class="navbar-search" action="/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="row-fluid">
+                    <div class="span1"></div>
+                    <div class="span10">
+<article itemscope>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+        <h1>
+            <a href="/go-basics.html">
+                Go -- Basics
+            </a>
+        </h1>
     </header>
+</div>
 
-    <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2020-04-22T17:30:00+05:30">
-                Published: Wed 22 April 2020
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="https://parijathakumar.github.io/author/parijatha-kumar.html">Parijatha Kumar</a>
-        </address>
-<p>In <a href="https://parijathakumar.github.io/category/go.html">Go</a>.</p>
-<p>tags: <a href="https://parijathakumar.github.io/tag/go.html">go</a> <a href="https://parijathakumar.github.io/tag/coding.html">coding</a> </p>
-</footer><!-- /.post-info -->      <h2>Program Structure and Environment</h2>
+<div class="row-fluid">
+        <div class="span8 offset2 article-content">
+            
+            <h2>Program Structure and Environment</h2>
 <p>Source files have ".go" extension.</p>
 <p>Every file starts with a package namespace declaration. All ".go" files in the same directory must have the same package declaration and thus belong to the same package.</p>
 <p>Program execution starts at the <code>main()</code> function in the <code>main</code> package. So, for the program to be executable ...</p>
@@ -131,6 +174,7 @@
 </pre></div>
 
 
+<p>In Go, a scope can be created with <code>{</code> <code>}</code> brackets just like in Java and JavaScript. In Python, indented block creates a scope.</p>
 <h3>Core Types</h3>
 <ul>
 <li>booleans : <code>bool</code>. Can be <code>true</code> and <code>false</code>. In Python, they are <code>True</code> and <code>False</code>.</li>
@@ -138,15 +182,17 @@
 <li>floats : <code>float32</code> and <code>float64</code>.</li>
 <li>text : </li>
 <li><code>string</code> : Go strings are simple slices (arrays) of bytes. Nothing more than that. As Go needs to support more than one type of encoding (though the default preferred one is UTF-8), Go strings do not assume any encoding on their own. So, they are just sequence of raw bytes. This is similar to the setup in Python2. That's why <code>len()</code> on a string variable gives only the number of raw bytes, not the number of characters.</li>
-<li><code>rune</code> : It's character type that stores a single UTF-8 multi-byte character. To figure out the number of characters of a string variable, we need to make a slice of <code>rune</code> type from it, and then apply <code>len()</code> on that slice.</li>
+<li><code>rune</code> : It's character type that stores a single UTF-8 multi-byte character. To figure out the number of characters of a string variable, we need to make a slice of <code>rune</code> type from it, and then apply <code>len()</code> on that slice. Or else, we can use <code>range</code> on the string variable, which iterates over the characters (of type <code>rune</code>) one by one.</li>
 <li>the special <code>nil</code>: In fact, it's not a type. It's a special value which represents empty value of empty type.</li>
 </ul>
 <h3>Literals</h3>
-<p>Literals are the way you provide values to a variable. Go supports two types of string literals.</p>
+<p>Literals are the way you provide values to a variable.</p>
+<p>Go supports two types of string literals.</p>
 <ul>
 <li>raw-strings : enclosed in back-quotes (`). Even "\n" is also not interpreted as new line.</li>
 <li>interpreted strings : enclosed in double quotes <code>"</code>. </li>
 </ul>
+<p>For <code>rune</code> type, the character is to be surrounded with single quotes. Ex. <code>var a rune = 'H'</code>. Any single character surrounded by single quotes is interpreted as <code>rune</code> type by Go.</p>
 <h3>Operators</h3>
 <p>Go does not have a separate operator for integer division unlike Python (<code>//</code>). The division operator, <code>/</code>, in Go acts much like that in Java and other statically typed languages. See ...</p>
 <div class="highlight"><pre><span></span><span class="mi">15</span> <span class="o">/</span> <span class="mi">2</span>      <span class="c1">// acts like integer division, results in 7</span>
@@ -161,7 +207,7 @@
 <h3>Basic Printing</h3>
 <p><code>fmt.Println()</code>, <code>fmt.Print()</code>, and <code>fmt.Printf()</code> are the simplest and widely used printing functions. </p>
 <p><code>fmt.Print()</code> adds a space between parameters and also a new line at the end.</p>
-<p><code>fmt.Printf()</code> takes format strings. A few common ones are ...</p>
+<p><code>fmt.Printf()</code> takes format strings. It doesn't add any spaces between paramaters, or a newline at the end. A few common formatting patterns are ...</p>
 <ul>
 <li><code>%d</code> : decimal (base 10) number</li>
 <li><code>%s</code> : string</li>
@@ -176,25 +222,171 @@
 <p>The zero value of a pointer type is <code>nil</code>. As Go allows <code>nil</code> pointers, i.e., pointers to values that do not exist, it is better to check for <code>pointer != nil</code> condition before trying to dereference a pointer, otherwise, it will result in run-time errors.</p>
 <p>Pointers can be created in a few ways ...</p>
 <ul>
-<li><code>var a *int</code> : <code>a</code> is declared as a pointer type (to integer values). But it's value is<code>nil</code>. No memory address is allocated yet. If you Printf it with <code>#v</code>, then you get something like <code>(*int)(nil)</code>.</li>
+<li><code>var a *int</code> : Here, <code>a</code> is declared as a pointer type (to integer values). But it's value is <code>nil</code>. No memory address is allocated yet. If you Printf it with <code>#v</code>, then you get something like <code>(*int)(nil)</code>.</li>
 <li><code>var a = new(int)</code>or <code>a := new(int)</code>: A memory location is allotted to store <code>int</code> values. The memory location is initialised with the default zero value of 0. If you Printf it with <code>#v</code>, then you get some memory location like <code>(*int)(0xc00002c008)</code>.</li>
 <li><code>a := &amp;b</code>: Here, <code>b</code> must already be declared (anyhow it must have been auto-initialised with the zero value). Some special structs allow creating pointers to them without even declaring them first. Ex. <code>a := &amp;time.Time{}</code>.</li>
 </ul>
 <p>Function arguments which are normal values (copies) are managed by Go (most of the times) in stacks. Whereas, function arguments which are pointers (pass by reference) are managed by Go in heap memory.</p>
 <p>Memory in heaps is reclaimed by a complex Garbage collection process and thus managing memory in heaps is comparatively more CPU-intensive than that in stacks.</p>
-    </div><!-- /.entry-content -->
 
-  </article>
-</section>
-        <section id="extras" class="body">
-                <div class="social">
-                        <h2>social</h2>
-                        <ul>
-                            <li><a href="https://parijathakumar.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
 
-                        </ul>
-                </div><!-- /.social -->
-        </section><!-- /#extras -->
+             
+ 
+            
+            
+            
 
-</body>
+
+
+
+
+
+
+            <hr/>
+        </div>
+        <section id="article-sidebar" class="span2">
+            <h4>Published</h4>
+            <time itemprop="dateCreated" datetime="2020-04-22T17:30:00+05:30">Wed 22 April 2020</time>
+            <h4>Category</h4>
+            <a class="category-link" href="/categories.html#go-ref">Go</a>
+            <h4>Tags</h4>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="/tags.html#coding-ref">coding
+                    <span class="superscript">5</span>
+</a></li>
+                <li><a href="/tags.html#go-ref">go
+                    <span class="superscript">4</span>
+</a></li>
+            </ul>
+            
+
+
+
+
+
+            
+
+
+
+
+
+        </section>
+</div>
+</article>
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe.
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides.
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo https://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>                    </div>
+                    <div class="span1"></div>
+                </div>
+            </div>
+        </div>
+<footer>
+
+
+
+
+    <div id="fpowered">
+        Powered by: <a href="http://getpelican.com/" title="Pelican Home Page" target="_blank" rel="nofollow noopener noreferrer">Pelican</a>
+        Theme: <a href="https://elegant.oncrashreboot.com/" title="Theme Elegant Home Page" target="_blank" rel="nofollow noopener noreferrer">Elegant</a>
+    </div>
+</footer>            <script src="//code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script src="/theme/js/elegant.prod.9e9d5ce754.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+
+    <script>
+    (function () {
+        if (window.location.hash.match(/^#comment-\d+$/)) {
+            $('#comment_thread').collapse('show');
+        }
+    })();
+    window.onhashchange=function(){
+        if (window.location.hash.match(/^#comment-\d+$/))
+            window.location.reload(true);
+    }
+    $('#comment_thread').on('shown', function () {
+        var link = document.getElementById('comment-accordion-toggle');
+        var old_innerHTML = link.innerHTML;
+        $(link).fadeOut(200, function() {
+            $(this).text('Click here to hide comments').fadeIn(200);
+        });
+        $('#comment_thread').on('hidden', function () {
+            $(link).fadeOut(200, function() {
+                $(this).text(old_innerHTML).fadeIn(200);
+            });
+        })
+    })
+</script>
+
+    </body>
+    <!-- Theme: Elegant built for Pelican
+        License : MIT -->
 </html>
